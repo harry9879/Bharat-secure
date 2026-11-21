@@ -1,0 +1,29 @@
+{
+  "transcript": "agvaar nahi vaart vaart vaart vaart",
+  "peak": 0.0273,
+  "history": [
+    {
+      "score": 0.0,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.019,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.027,
+      "level": "SAFE",
+      "type": null
+    }
+  ],
+  "llm": {
+    "score": 0.05,
+    "type": "safe",
+    "red_flags": [],
+    "reason": "The transcript so far is just garbled speech-recognition noise with no request for money, secrets, or urgent action.",
+    "advice": "Nothing suspicious yet; stay alert and never share OTP or PIN if asked.",
+    "seconds": 1.45
+  }
+}

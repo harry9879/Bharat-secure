@@ -1,0 +1,34 @@
+{
+  "transcript": "so hello we are going to talk about what is team laplace and vaadik to phirt vaad vaad vaad vaad vaad vaad",
+  "peak": 0.06562852138986652,
+  "history": [
+    {
+      "score": 0.043,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.06,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.064,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.066,
+      "level": "SAFE",
+      "type": null
+    }
+  ],
+  "llm": {
+    "score": 0.05,
+    "type": "safe",
+    "red_flags": [],
+    "reason": "The call has only just started with a vague introduction about 'team laplace' and nothing suspicious has been said yet — no request for secrets, money, or urgent action.",
+    "advice": "Keep listening; if they ask for OTP, money, or to install an app or click a link, hang up and report it.",
+    "seconds": 1.85
+  }
+}

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BharatSecure</string>
+    <string name="accessibility_description">Lets Protection Mode hear a call on speaker. Android mutes the microphone for other apps during calls; this service keeps it open. It does not read your screen.</string>
+</resources>

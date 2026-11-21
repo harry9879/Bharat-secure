@@ -1,0 +1,13 @@
+# Install torch first (GPU build shown; drop the index URL for CPU only):
+#   .venv/Scripts/pip install torch --index-url https://download.pytorch.org/whl/cu126
+torch
+sentence-transformers
+fastapi
+uvicorn[standard]
+python-multipart
+requests
+python-dotenv
+pandas
+pyarrow
+numpy
+sounddevice

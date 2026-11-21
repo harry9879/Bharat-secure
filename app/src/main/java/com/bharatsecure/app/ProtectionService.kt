@@ -106,11 +106,14 @@ class ProtectionService : Service() {
         }
 
         // Online (Groq Whisper, English) when chosen and a key is saved;
-        // otherwise the offline Vosk models.
+        // otherwise the offline Vosk models, unless the offline engine has been
+        // switched off (SpeechModels.offlineEnabled) - then the call is only
+        // recorded and no transcript is produced on the phone.
         val wantsOnline = SpeechModels.engine(this) == SpeechEngine.ONLINE
         val apiKey = SpeechModels.apiKey(this)
+        val offlineAllowed = SpeechModels.offlineEnabled(this)
         val cloud = if (wantsOnline && apiKey.isNotBlank()) CloudTranscriber(apiKey, SAMPLE_RATE) else null
-        val transcriber = if (cloud == null) loadTranscriber() else null
+        val transcriber = if (cloud == null && offlineAllowed) loadTranscriber() else null
         val engineLabel = cloud?.label ?: transcriber?.label
         val lines = mutableListOf<String>()
 
@@ -159,6 +162,7 @@ class ProtectionService : Service() {
                         cloud != null -> "Recording · online engine, text every ~6 s"
                         transcriber != null && wantsOnline -> "No API key saved, using offline (${transcriber.label})"
                         transcriber != null -> "Recording and transcribing (${transcriber.label})"
+                        !offlineAllowed -> "Recording · offline transcript is off"
                         else -> "Recording (no speech model, transcript off)"
                     }
                 )
@@ -266,7 +270,7 @@ class ProtectionService : Service() {
             appendLine("Source: ${source.label}")
             appendLine("Caller: ${caller ?: "unknown"}")
             appendLine("Started: $stamp")
-            appendLine("Speech engine: ${engineLabel ?: "none"}")
+            appendLine("Speech engine: ${engineLabel ?: if (!offlineAllowed) "none (offline off)" else "none"}")
             if (rag != null) {
                 appendLine("Laptop RAG ($ragUrl): " + (lastRag?.let {
                     "${it.level} ${it.typeName.orEmpty()} (score ${"%.2f".format(it.score)})".trim()
@@ -275,7 +279,11 @@ class ProtectionService : Service() {
             appendLine("Mic sources: ${sourceLog.joinToString(", ").ifEmpty { SOURCES[sourceIndex].first }}")
             appendLine()
             if (!heardAnything) appendLine("(Silent: Android muted the microphone. Turn on Accessibility in Setup.)")
-            if (engineLabel == null) appendLine("(No speech model was installed, so there is no transcript.)")
+            if (engineLabel == null && !offlineAllowed) {
+                appendLine("(Offline transcript is switched off, so the call was recorded without one.)")
+            } else if (engineLabel == null) {
+                appendLine("(No speech model was installed, so there is no transcript.)")
+            }
             cloud?.lastError?.let { appendLine("(Online engine error: $it)") }
             lines.forEach { appendLine(it) }
         })

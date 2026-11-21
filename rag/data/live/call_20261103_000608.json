@@ -1,0 +1,53 @@
+{
+  "transcript": "we are going to talk about your half the bank i am talking bank manager so your bank se it has been compromised and we need your otp to secure that thing i use to keep in cigar bank so i am asking that hora",
+  "peak": 0.8603042836034736,
+  "history": [
+    {
+      "score": 0.039,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.055,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.061,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.464,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.724,
+      "level": "WARNING",
+      "type": "phishing_otp"
+    },
+    {
+      "score": 0.808,
+      "level": "SCAM",
+      "type": "phishing_otp"
+    },
+    {
+      "score": 0.86,
+      "level": "SCAM",
+      "type": "phishing_otp"
+    }
+  ],
+  "llm": {
+    "score": 0.95,
+    "type": "phishing_otp",
+    "red_flags": [
+      "we need your otp to secure that thing",
+      "your bank se it has been compromised",
+      "I am talking bank manager"
+    ],
+    "reason": "The caller claims to be a bank manager and says your account is compromised, then asks you to share your OTP. Real banks never ask for an OTP over the phone.",
+    "advice": "Do not share the OTP; hang up and call your bank's official number to check.",
+    "seconds": 1.73
+  }
+}

@@ -1,0 +1,17 @@
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  10%|▉         | 19/199 [00:00<00:00, 184.87it/s]Loading weights:  92%|█████████▏| 184/199 [00:00<00:00, 1033.53it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 969.17it/s] 
+INFO:     Started server process [23332]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57453 - "GET /health HTTP/1.1" 200 OK
+INFO:     192.168.18.77:51540 - "POST /v1/devices/register HTTP/1.1" 404 Not Found
+INFO:     192.168.18.77:51540 - "POST /v1/devices/register HTTP/1.1" 404 Not Found
+INFO:     192.168.18.77:51540 - "POST /v1/devices/register HTTP/1.1" 404 Not Found
+INFO:     192.168.18.77:58426 - "POST /v1/devices/register HTTP/1.1" 404 Not Found
+INFO:     192.168.18.77:58426 - "POST /v1/devices/register HTTP/1.1" 404 Not Found
+INFO:     192.168.18.77:58426 - "POST /v1/devices/register HTTP/1.1" 404 Not Found
+INFO:     192.168.18.77:58426 - "POST /v1/devices/register HTTP/1.1" 404 Not Found
+INFO:     192.168.18.77:58426 - "POST /v1/devices/register HTTP/1.1" 404 Not Found
+INFO:     192.168.18.77:47934 - "POST /v1/devices/register HTTP/1.1" 404 Not Found
+INFO:     192.168.18.11:65102 - "GET /docs HTTP/1.1" 200 OK
+INFO:     192.168.18.77:35008 - "POST /v1/devices/register HTTP/1.1" 404 Not Found

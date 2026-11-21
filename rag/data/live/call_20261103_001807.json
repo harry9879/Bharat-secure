@@ -1,0 +1,63 @@
+{
+  "transcript": "i am a sain karma iliye hello sir main bank se bol raha hoon tunggu i like sort of a ban to the room proprio para aapka account block ho jayega otp bata dijiye aapka account block ho jayega otp bata dijiye theek hai haan ji kya hua",
+  "peak": 0.8454250571645101,
+  "history": [
+    {
+      "score": 0.019,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.027,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.112,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.144,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.185,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.202,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.581,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.771,
+      "level": "SCAM",
+      "type": "phishing_otp"
+    },
+    {
+      "score": 0.845,
+      "level": "SCAM",
+      "type": "phishing_otp"
+    }
+  ],
+  "llm": {
+    "score": 0.95,
+    "type": "phishing_otp",
+    "red_flags": [
+      "main bank se bol raha hoon",
+      "aapka account block ho jayega",
+      "otp bata dijiye"
+    ],
+    "reason": "The caller claims to be from the bank, threatens that your account will be blocked, and asks you to tell them the OTP. Real banks never ask for an OTP over the phone.",
+    "advice": "Hang up now and never share the OTP with anyone; call your bank's official number if you are worried.",
+    "seconds": 1.58
+  }
+}

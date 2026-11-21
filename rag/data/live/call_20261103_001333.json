@@ -1,0 +1,67 @@
+{
+  "transcript": "hello bhor bhai kaisa hai kya hal chalte vay kahaan ghoma jara hai haach kal ia haan ji kya hua hela kya hua aapka account block ho jayega otp bata dijiye tunggu kya hua hello ye kya hai nek kya hua nek kya hua haa help him deal pi saan rong de jada kya hua",
+  "peak": 0.828020573105909,
+  "history": [
+    {
+      "score": 0.019,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.027,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.03,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.032,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.54,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.743,
+      "level": "WARNING",
+      "type": "phishing_otp"
+    },
+    {
+      "score": 0.804,
+      "level": "SCAM",
+      "type": "phishing_otp"
+    },
+    {
+      "score": 0.818,
+      "level": "SCAM",
+      "type": "phishing_otp"
+    },
+    {
+      "score": 0.825,
+      "level": "SCAM",
+      "type": "phishing_otp"
+    },
+    {
+      "score": 0.828,
+      "level": "SCAM",
+      "type": "phishing_otp"
+    }
+  ],
+  "llm": {
+    "score": 0.9,
+    "type": "phishing_otp",
+    "red_flags": [
+      "aapka account block ho jayega",
+      "otp bata dijiye"
+    ],
+    "reason": "The caller threatens that your account will be blocked and asks you to tell them the OTP — a classic OTP phishing trick. No real bank ever asks for your OTP.",
+    "advice": "Do not share any OTP; hang up and call your bank's official number if you are worried.",
+    "seconds": 1.89
+  }
+}

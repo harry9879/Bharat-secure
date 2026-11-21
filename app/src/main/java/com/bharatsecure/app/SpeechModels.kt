@@ -41,7 +41,25 @@ object SpeechModels {
     private const val KEY_LANGUAGE = "language"
     private const val KEY_ENGINE = "engine"
     private const val KEY_API = "groq_api_key"
+    private const val KEY_OFFLINE_ON = "offline_enabled"
     private const val MARKER = ".installed"
+
+    /**
+     * Master switch for the on-device Vosk engine. When off, no offline
+     * transcript is produced at all: the call is still recorded to .wav and
+     * still sent to the laptop RAG, but nothing is transcribed on the phone.
+     * Use it when the offline models would show rough text to an audience.
+     */
+    fun offlineEnabled(context: Context): Boolean =
+        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getBoolean(KEY_OFFLINE_ON, true)
+
+    fun setOfflineEnabled(context: Context, enabled: Boolean) {
+        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit()
+            .putBoolean(KEY_OFFLINE_ON, enabled).apply()
+        // Offline off and Offline selected would mean no transcript at all with
+        // no way to see why, so move the choice to Online.
+        if (!enabled && engine(context) == SpeechEngine.OFFLINE) selectEngine(context, SpeechEngine.ONLINE)
+    }
 
     fun engine(context: Context): SpeechEngine {
         val name = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(KEY_ENGINE, null)

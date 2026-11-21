@@ -1,0 +1,16 @@
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  22%|██▏       | 43/199 [00:00<00:00, 428.97it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1369.43it/s]
+
+retrieval + DeepSeek  (WARNING at 0.45, SCAM at 0.75)
+set            scams caught (WARN/SCAM)   false alarms (WARN/SCAM)  type right
+audio               4/4      4/4               0/0      0/0            4
+handwritten        24/24    18/24              2/16     0/16          24
+scams_txt          31/31    13/31              1/23     0/23          28
+
+threshold sweep (all sets): 0.3: 59/59 caught, 6/39 FA, 0.35: 59/59 caught, 4/39 FA, 0.4: 59/59 caught, 4/39 FA, 0.45: 59/59 caught, 3/39 FA, 0.5: 58/59 caught, 2/39 FA, 0.55: 58/59 caught, 1/39 FA, 0.6: 55/59 caught, 1/39 FA, 0.65: 51/59 caught, 1/39 FA, 0.7: 44/59 caught, 0/39 FA, 0.75: 35/59 caught, 0/39 FA, 0.8: 26/59 caught, 0/39 FA
+
+mistakes at WARNING:
+  scams_txt   safe            peak 0.48  hello your refund request has been approved the amount will be credite
+  handwritten safe            peak 0.54  sir main cyber crime cell se bol raha hoon aapki complaint ke basis pa
+  handwritten safe            peak 0.69  hello sir main income tax office se bol raha hoon aapka refund process
+
+saved C:\Users\asus\Desktop\bharatsecure\rag\data\eval_results_llm.json

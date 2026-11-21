@@ -1,0 +1,39 @@
+{
+  "transcript": "vaaee vaaee die vaaee die nagtaaib die ab pracht raaib niyukti agar mein is baaib ahut bhaas kane hai ki gaaib bhi aur chha kilich vrit jaun bhaas baad ting hai ye to bahut bhusra kar raha hai ye to bahut pahle se vikaar kar raha hai",
+  "peak": 0.0878737259300024,
+  "history": [
+    {
+      "score": 0.0,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.019,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.027,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.03,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.088,
+      "level": "SAFE",
+      "type": null
+    }
+  ],
+  "llm": {
+    "score": 0.05,
+    "type": "safe",
+    "red_flags": [],
+    "reason": "The transcript is garbled speech recognition with no clear request for money, secrets, or urgent action. Nothing suspicious stands out.",
+    "advice": "No action needed; if the caller asks for OTP, PIN, money or a link, hang up and report.",
+    "seconds": 1.26
+  }
+}

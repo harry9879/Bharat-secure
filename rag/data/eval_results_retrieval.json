@@ -1,0 +1,858 @@
+{
+  "mode": "retrieval only",
+  "warn": 0.45,
+  "scam": 0.75,
+  "summary": {
+    "handwritten": {
+      "scams": 24,
+      "legit": 16,
+      "caught_warning": 20,
+      "caught_scam": 14,
+      "false_alarms_warning": 5,
+      "false_alarms_scam": 3,
+      "type_correct": 18
+    },
+    "scams_txt": {
+      "scams": 31,
+      "legit": 23,
+      "caught_warning": 26,
+      "caught_scam": 8,
+      "false_alarms_warning": 2,
+      "false_alarms_scam": 1,
+      "type_correct": 17
+    }
+  },
+  "sweep": [
+    {
+      "threshold": 0.3,
+      "caught": 51,
+      "scams": 55,
+      "false_alarms": 15,
+      "legit": 39
+    },
+    {
+      "threshold": 0.35,
+      "caught": 51,
+      "scams": 55,
+      "false_alarms": 12,
+      "legit": 39
+    },
+    {
+      "threshold": 0.4,
+      "caught": 49,
+      "scams": 55,
+      "false_alarms": 9,
+      "legit": 39
+    },
+    {
+      "threshold": 0.45,
+      "caught": 46,
+      "scams": 55,
+      "false_alarms": 7,
+      "legit": 39
+    },
+    {
+      "threshold": 0.5,
+      "caught": 41,
+      "scams": 55,
+      "false_alarms": 7,
+      "legit": 39
+    },
+    {
+      "threshold": 0.55,
+      "caught": 40,
+      "scams": 55,
+      "false_alarms": 6,
+      "legit": 39
+    },
+    {
+      "threshold": 0.6,
+      "caught": 37,
+      "scams": 55,
+      "false_alarms": 6,
+      "legit": 39
+    },
+    {
+      "threshold": 0.65,
+      "caught": 34,
+      "scams": 55,
+      "false_alarms": 6,
+      "legit": 39
+    },
+    {
+      "threshold": 0.7,
+      "caught": 25,
+      "scams": 55,
+      "false_alarms": 4,
+      "legit": 39
+    },
+    {
+      "threshold": 0.75,
+      "caught": 22,
+      "scams": 55,
+      "false_alarms": 4,
+      "legit": 39
+    },
+    {
+      "threshold": 0.8,
+      "caught": 17,
+      "scams": 55,
+      "false_alarms": 2,
+      "legit": 39
+    }
+  ],
+  "rows": [
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/1",
+      "label": "phishing_otp",
+      "peak": 0.46538736053451024,
+      "final_type": "phishing_otp",
+      "text": "hello good morning sir i am calling from sbi aapka debit card block kardiya gya due to ver"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/2",
+      "label": "phishing_otp",
+      "peak": 0.7401894670291951,
+      "final_type": "phishing_otp",
+      "text": "hello good afternoon sir i am calling from baroda bank aapka adhaar verification baki h wh"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/3",
+      "label": "phishing_otp",
+      "peak": 0.46514816134452824,
+      "final_type": "phishing_otp",
+      "text": "hello sir main bank department se bol raha hoon aapka account verification pending hai muj"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/4",
+      "label": "phishing_otp",
+      "peak": 0.8422938429256281,
+      "final_type": "banking",
+      "text": "hello aapka parcel delivery ke liye aaya hua hai lekin aapka address incomplete hai main a"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/5",
+      "label": "other_scam",
+      "peak": 0.5615709610815749,
+      "final_type": "banking",
+      "text": "hello sir humein aapka number job portal se mila hai aapko ghar baithe daily 2 000 se 5 00"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/6",
+      "label": "phishing_otp",
+      "peak": 0.906842698866986,
+      "final_type": "phishing_otp",
+      "text": "sir main sbi bank ke head office se baat kar raha hoon aapka kyc expire ho gaya hai agar a"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/7",
+      "label": "digital_arrest",
+      "peak": 0.9566496764058074,
+      "final_type": "digital_arrest",
+      "text": "hello main cyber crime department se inspector sharma bol raha hoon aapke aadhaar card ka "
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/8",
+      "label": "digital_arrest",
+      "peak": 0.9743999999999999,
+      "final_type": "digital_arrest",
+      "text": "sir aapka naam ek money laundering case mein aaya hai aapko kisi se baat nahi karni hai hu"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/9",
+      "label": "other_scam",
+      "peak": 0.6628471617250984,
+      "final_type": "banking",
+      "text": "congratulations aapne hamari lucky draw competition mein 25 lakh rupaye jeete hain prize c"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/10",
+      "label": "other_scam",
+      "peak": 0.3573460952772655,
+      "final_type": null,
+      "text": "hello uncle main aapke bete ke dost ka friend bol raha hoon unka accident ho gaya hai unhe"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/11",
+      "label": "other_scam",
+      "peak": 0.41814376030341566,
+      "final_type": null,
+      "text": "dhyan se suno tumhari personal information hamare paas hai agar tumne hamari baat nahi maa"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/12",
+      "label": "banking",
+      "peak": 0.6701813539202868,
+      "final_type": "banking",
+      "text": "bhaiya main aapko paise bhej raha hoon aapko bas upi pin enter karna hai taaki payment rec"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/13",
+      "label": "other_scam",
+      "peak": 0.8619780948484455,
+      "final_type": "phishing_otp",
+      "text": "namaste sir electricity department se bol raha hoon aapka bijli bill pending hai agar aaj "
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/14",
+      "label": "other_scam",
+      "peak": 0.8923621984758798,
+      "final_type": "banking",
+      "text": "sir hamari company guaranteed 30 percent monthly return deti hai aap sirf 10 000 invest ki"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/15",
+      "label": "banking",
+      "peak": 0.6862118825677939,
+      "final_type": "banking",
+      "text": "hello sir congratulations your personal loan of rupees 5 lakh has been pre approved you do"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/16",
+      "label": "other_scam",
+      "peak": 0.608382228338927,
+      "final_type": "other_scam",
+      "text": "sir i am calling regarding your old insurance policy your policy bonus of rupees 1 5 lakh "
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/17",
+      "label": "digital_arrest",
+      "peak": 0.6924831621570436,
+      "final_type": "digital_arrest",
+      "text": "hello your international parcel has been stopped at customs some illegal items were found "
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/18",
+      "label": "other_scam",
+      "peak": 0.25045297227220786,
+      "final_type": null,
+      "text": "hello we are offering a part time job you just need to like youtube videos and give five s"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/19",
+      "label": "digital_arrest",
+      "peak": 0.41020603279319034,
+      "final_type": null,
+      "text": "sir aap samajh nahi rahe hain aapke naam par serious complaint register hui hai agar aapne"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/20",
+      "label": "phishing_otp",
+      "peak": 0.7834341152784317,
+      "final_type": "phishing_otp",
+      "text": "madam aapke paas sirf 10 minute hain iske baad aapka account permanently suspend ho jayega"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/21",
+      "label": "other_scam",
+      "peak": 0.4900624531596256,
+      "final_type": "banking",
+      "text": "hello bhai main tera cousin bol raha hoon mera phone kharab ho gaya hai isliye naye number"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/22",
+      "label": "other_scam",
+      "peak": 0.6468447828855268,
+      "final_type": "banking",
+      "text": "sir hum aapki help karna chahte hain lekin agar aapne abhi payment nahi ki toh hum kuch na"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/23",
+      "label": "phishing_otp",
+      "peak": 0.6548346233036396,
+      "final_type": "phishing_otp",
+      "text": "hello sir i am calling from your credit card department you are eligible for a limit incre"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/24",
+      "label": "phishing_otp",
+      "peak": 0.4220496456403442,
+      "final_type": null,
+      "text": "your account has been temporarily frozen because of suspicious activity to reactivate it y"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/25",
+      "label": "banking",
+      "peak": 0.664895510441378,
+      "final_type": "banking",
+      "text": "sir your cheque clearance is pending we need you to confirm your account information befor"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/26",
+      "label": "phishing_otp",
+      "peak": 0.4717513553672891,
+      "final_type": null,
+      "text": "hello i am calling from the income tax department there is a discrepancy in your income ta"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/27",
+      "label": "digital_arrest",
+      "peak": 0.7726941092210703,
+      "final_type": "phishing_otp",
+      "text": "your aadhaar card has been linked to multiple suspicious bank accounts please complete you"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/28",
+      "label": "digital_arrest",
+      "peak": 0.6197411921721078,
+      "final_type": "digital_arrest",
+      "text": "sir a legal notice has been issued in your name you are required to attend a hearing if yo"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/29",
+      "label": "digital_arrest",
+      "peak": 0.4827180284421543,
+      "final_type": "digital_arrest",
+      "text": "your name has appeared in an ongoing investigation we are calling from the investigation d"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/30",
+      "label": "other_scam",
+      "peak": 0.5048760414131542,
+      "final_type": "other_scam",
+      "text": "your passport application is on hold because your address verification is incomplete pay t"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/scam/31",
+      "label": "phishing_otp",
+      "peak": 0.5967049246849052,
+      "final_type": "phishing_otp",
+      "text": "your government subsidy of rupees 25 000 has been approved to receive the money you need t"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/1",
+      "label": "safe",
+      "peak": 0.1931188760553194,
+      "final_type": null,
+      "text": "good afternoon this is rahul calling from the training and placement cell of your college "
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/2",
+      "label": "safe",
+      "peak": 0.0,
+      "final_type": null,
+      "text": "good morning thank you for calling customer support how may i help you today could you ple"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/3",
+      "label": "safe",
+      "peak": 0.25073335518989154,
+      "final_type": null,
+      "text": "dear customer we are calling to inform you that your debit card replacement request has be"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/4",
+      "label": "safe",
+      "peak": 0.0,
+      "final_type": null,
+      "text": "hello bhai kya kar raha hai kal college aa raha hai kya yaar kal assignment submit karna h"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/5",
+      "label": "safe",
+      "peak": 0.27707446363519184,
+      "final_type": null,
+      "text": "hello mummy main college se nikal gaya hoon thoda traffic hai toh ghar pahunchne mein 30 4"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/6",
+      "label": "safe",
+      "peak": 0.2024891912216751,
+      "final_type": null,
+      "text": "hello sir main aapke office ke paas pahunch gaya hoon lekin mujhe building nahi mil rahi k"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/7",
+      "label": "safe",
+      "peak": 0.5268790769128582,
+      "final_type": "phishing_otp",
+      "text": "hello i am calling to confirm whether you recently made a transaction of rupees 2 500 usin"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/8",
+      "label": "safe",
+      "peak": 0.1732465979569218,
+      "final_type": null,
+      "text": "good morning this is a reminder from the school administration your childs monthly fee is "
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/9",
+      "label": "safe",
+      "peak": 0.0,
+      "final_type": null,
+      "text": "hello this is city hospital calling we are confirming your appointment with the doctor tom"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/10",
+      "label": "safe",
+      "peak": 0.7864970014536431,
+      "final_type": "banking",
+      "text": "hello your refund request has been approved the amount will be credited to your original p"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/11",
+      "label": "safe",
+      "peak": 0.046770049032931166,
+      "final_type": null,
+      "text": "congratulations your resume has been shortlisted for the technical interview we would like"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/12",
+      "label": "safe",
+      "peak": 0.03995434053097159,
+      "final_type": null,
+      "text": "namaste this is an informational call regarding voter awareness we encourage eligible citi"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/13",
+      "label": "safe",
+      "peak": 0.0,
+      "final_type": null,
+      "text": "namaste a free vaccination awareness camp is being organized at the community health centr"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/14",
+      "label": "safe",
+      "peak": 0.0,
+      "final_type": null,
+      "text": "hello sir i have arrived at your pickup location i am driving a white swift dzire please l"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/15",
+      "label": "safe",
+      "peak": 0.0,
+      "final_type": null,
+      "text": "hello sir i have arrived at your pickup location i am driving a white swift dzire please l"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/16",
+      "label": "safe",
+      "peak": 0.0,
+      "final_type": null,
+      "text": "good evening this is the hotel reception your room is ready and you can complete the check"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/17",
+      "label": "safe",
+      "peak": 0.0,
+      "final_type": null,
+      "text": "dear passenger your flight departure time has been changed to 6 45 pm due to operational r"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/18",
+      "label": "safe",
+      "peak": 0.0,
+      "final_type": null,
+      "text": "hello i am calling to confirm your bus booking from chandigarh to manali your boarding poi"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/19",
+      "label": "safe",
+      "peak": 0.12086874149311896,
+      "final_type": null,
+      "text": "good afternoon i am calling from abc technologies regarding an employment reference for a "
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/20",
+      "label": "safe",
+      "peak": 0.052811776611643844,
+      "final_type": null,
+      "text": "hello we wanted to discuss your internship performance and provide feedback on the project"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/21",
+      "label": "safe",
+      "peak": 0.2153824347351216,
+      "final_type": null,
+      "text": "hi i have sent you the project requirements over email please review the document and let "
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/22",
+      "label": "safe",
+      "peak": 0.0,
+      "final_type": null,
+      "text": "hello we have reviewed your interview feedback the management would like to discuss the sa"
+    },
+    {
+      "source": "scams_txt",
+      "group": "scams_txt/genuine/23",
+      "label": "safe",
+      "peak": 0.11118563512917451,
+      "final_type": null,
+      "text": "hello this is priya from the hr department we reviewed your resume and would like to sched"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/0",
+      "label": "digital_arrest",
+      "peak": 0.9952894416297788,
+      "final_type": "digital_arrest",
+      "text": "hello this is inspector rajesh from mumbai cyber crime your aadhaar number is linked to a "
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/1",
+      "label": "digital_arrest",
+      "peak": 0.9946937488480768,
+      "final_type": "digital_arrest",
+      "text": "aapne apna income tax nahi bhara tha aaj hamein income tax department se ye khabar mili ha"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/2",
+      "label": "digital_arrest",
+      "peak": 0.9269254178655262,
+      "final_type": "digital_arrest",
+      "text": "sir cbi headquarters se baat ho rahi hai aapke account se terror funding hui hai video on "
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/3",
+      "label": "digital_arrest",
+      "peak": 0.9743999999999999,
+      "final_type": "digital_arrest",
+      "text": "madam narcotics bureau officer speaking your courier from thailand had mdma tablets you ar"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/4",
+      "label": "digital_arrest",
+      "peak": 0.8916486086578334,
+      "final_type": "digital_arrest",
+      "text": "hello uncle ji main delhi police se bol raha hoon aapke bete ko humne pakda hai rape case "
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/5",
+      "label": "digital_arrest",
+      "peak": 0.9743999999999999,
+      "final_type": "digital_arrest",
+      "text": "this is the supreme court registry a non bailable warrant is pending against you for unpai"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/6",
+      "label": "digital_arrest",
+      "peak": 0.910961470205103,
+      "final_type": "digital_arrest",
+      "text": "trai se call hai do ghante mein aapka number band ho jayega kyunki is number se illegal me"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/7",
+      "label": "digital_arrest",
+      "peak": 0.9743999999999999,
+      "final_type": "digital_arrest",
+      "text": "you are under digital arrest sir keep the camera facing you at all times even at night we "
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/8",
+      "label": "phishing_otp",
+      "peak": 0.9276273546077974,
+      "final_type": "phishing_otp",
+      "text": "sir aapka paytm kyc expire ho gaya hai abhi aapke number pe ek otp aayega usko jaldi se ba"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/9",
+      "label": "phishing_otp",
+      "peak": 0.29152890462569914,
+      "final_type": null,
+      "text": "hello this is amazon support we detected a suspicious login please read me the verificatio"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/10",
+      "label": "phishing_otp",
+      "peak": 0.6768670801886019,
+      "final_type": "phishing_otp",
+      "text": "beta main bijli vibhag se bol raha hoon aaj raat nau baje line kat jayegi ek app download "
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/11",
+      "label": "phishing_otp",
+      "peak": 0.9359999999999999,
+      "final_type": "phishing_otp",
+      "text": "dear customer your credit card reward points will expire today tell me the card number and"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/12",
+      "label": "phishing_otp",
+      "peak": 0.6680334936204946,
+      "final_type": "phishing_otp",
+      "text": "madam aapki lic policy ka bonus aaya hai claim karne ke liye whatsapp pe link bheja hai us"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/13",
+      "label": "phishing_otp",
+      "peak": 0.7540037340543935,
+      "final_type": "phishing_otp",
+      "text": "sir new sim card activate karna hai 1 dabaiye aur fir message mein jo 6 digit code aaya ha"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/14",
+      "label": "phishing_otp",
+      "peak": 0.6773880685893843,
+      "final_type": "phishing_otp",
+      "text": "we are from the gas agency your subsidy is pending please share the one time password to l"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/15",
+      "label": "banking",
+      "peak": 0.14007197770005161,
+      "final_type": null,
+      "text": "bhaiya galti se aapke gpay pe pandrah hazaar chale gaye maa hospital mein hai please wapas"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/16",
+      "label": "banking",
+      "peak": 0.84,
+      "final_type": "banking",
+      "text": "sir aapka refund ready hai phonepe mein jo request aayi hai usme pin daal dijiye refund tu"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/17",
+      "label": "banking",
+      "peak": 0.7256555290867875,
+      "final_type": "banking",
+      "text": "congratulations your bajaj finance loan of five lakh is approved just pay the insurance ch"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/18",
+      "label": "banking",
+      "peak": 0.7719597278396604,
+      "final_type": "banking",
+      "text": "hello madam main olx se aapka fridge kharidna chahta hoon qr bhej raha hoon scan karo aur "
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/19",
+      "label": "banking",
+      "peak": 0.7109026584654635,
+      "final_type": "digital_arrest",
+      "text": "your emi bounced due to a technical error please pay the emi plus penalty to this upi id o"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/20",
+      "label": "other_scam",
+      "peak": 0.7885782742942751,
+      "final_type": "banking",
+      "text": "kaun banega crorepati se bol raha hoon aapka 25 lakh ka lottery laga hai gst ke 12500 bhej"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/21",
+      "label": "other_scam",
+      "peak": 0.5670756005603721,
+      "final_type": "other_scam",
+      "text": "hello we saw your resume on naukri you are selected for work from home job you only need t"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/22",
+      "label": "other_scam",
+      "peak": 0.2721135074041237,
+      "final_type": null,
+      "text": "papa main hoon mera phone kho gaya ye dost ka number hai bahut emergency hai abhi pachas h"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/23",
+      "label": "other_scam",
+      "peak": 0.3759842999819576,
+      "final_type": null,
+      "text": "sir like karo youtube videos aur roz teen hazaar kamao pehle task ke liye telegram group j"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/24",
+      "label": "safe",
+      "peak": 0.3540790672038676,
+      "final_type": null,
+      "text": "hello sir main hdfc bank se bol rahi hoon aapki credit card ki payment due date kal hai aa"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/25",
+      "label": "safe",
+      "peak": 0.31394303823591985,
+      "final_type": null,
+      "text": "good evening this is the sbi fraud team did you just try a transaction of 23000 at a jewel"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/26",
+      "label": "safe",
+      "peak": 0.4464739936450175,
+      "final_type": null,
+      "text": "namaste main sector 15 thane se constable yadav bol raha hoon aapki gaadi ka accident repo"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/27",
+      "label": "safe",
+      "peak": 0.3745078091968368,
+      "final_type": null,
+      "text": "hello this is officer khan from the passport office police verification will happen at you"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/28",
+      "label": "safe",
+      "peak": 0.761077464667356,
+      "final_type": "banking",
+      "text": "madam aapka parcel delivery ke liye nikla hai main amazon delivery boy bol raha hoon aap g"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/29",
+      "label": "safe",
+      "peak": 0.06931657876500763,
+      "final_type": null,
+      "text": "hello beta main mummy bol rahi hoon tumhare papa ki dawai khatam ho gayi hai aate waqt che"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/30",
+      "label": "safe",
+      "peak": 0.3402624357993707,
+      "final_type": null,
+      "text": "sir icici bank home loan department se call hai aapne enquiry ki thi interest rate 8 5 per"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/31",
+      "label": "safe",
+      "peak": 0.0,
+      "final_type": null,
+      "text": "hello this is dr mehtas clinic calling to confirm your appointment tomorrow at 4 pm please"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/32",
+      "label": "safe",
+      "peak": 0.9743999999999999,
+      "final_type": "digital_arrest",
+      "text": "sir main cyber crime cell se bol raha hoon aapki complaint ke basis par fraud wala account"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/33",
+      "label": "safe",
+      "peak": 0.4282578949485909,
+      "final_type": null,
+      "text": "hello ji main electricity office se bol raha hoon kal subah das se do baje tak maintenance"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/34",
+      "label": "safe",
+      "peak": 0.308358532459731,
+      "final_type": null,
+      "text": "hi this is ravi from airtel your postpaid bill of 799 is generated you can pay through the"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/35",
+      "label": "safe",
+      "peak": 0.17117104042978762,
+      "final_type": null,
+      "text": "arre yaar kal cricket khelne chalna hai kya subah saat baje ground pe milte hain bat leke "
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/36",
+      "label": "safe",
+      "peak": 0.955657947493229,
+      "final_type": "banking",
+      "text": "hello sir main income tax office se bol raha hoon aapka refund process ho gaya hai paanch "
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/37",
+      "label": "safe",
+      "peak": 0.35467114532782273,
+      "final_type": null,
+      "text": "good morning maam this is axis bank your new debit card has been dispatched by speed post "
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/38",
+      "label": "safe",
+      "peak": 0.6740851271429801,
+      "final_type": "banking",
+      "text": "namaste aunty main society ka secretary bol raha hoon maintenance ka 1500 jama karna hai o"
+    },
+    {
+      "source": "handwritten",
+      "group": "handwritten/39",
+      "label": "safe",
+      "peak": 0.6991658291443821,
+      "final_type": "digital_arrest",
+      "text": "hello is this mr verma i am calling from the courier company we tried to deliver your parc"
+    }
+  ]
+}

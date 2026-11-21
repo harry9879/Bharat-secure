@@ -1,0 +1,38 @@
+{"id": "p01", "label": "phishing_otp", "text": "sir aapka account block ho jayega abhi aapke mobile par otp aayega woh mujhe bata dijiye kyc update karna hai"}
+{"id": "p02", "label": "phishing_otp", "text": "your account will be suspended today please share the one time password you received to verify your identity"}
+{"id": "p03", "label": "phishing_otp", "text": "aapke phone par ek link aaya hai us par click karke apna aadhaar aur bank details update kar dijiye"}
+{"id": "p04", "label": "phishing_otp", "text": "please install anydesk from play store and tell me the nine digit code so our technical team can fix it"}
+{"id": "p05", "label": "phishing_otp", "text": "to increase your credit card limit tell me the card number expiry date and the three digit cvv on the back"}
+{"id": "p06", "label": "phishing_otp", "text": "sim card upgrade karna hai message mein jo code aaya hai woh bol dijiye warna number band ho jayega"}
+{"id": "p07", "label": "digital_arrest", "text": "main mumbai cyber crime se inspector bol raha hoon aapke aadhaar se money laundering hui hai aapke khilaf case darj hai aapko arrest kiya jayega"}
+{"id": "p08", "label": "digital_arrest", "text": "this is cbi your parcel was seized by customs with drugs and fake passports you are under digital arrest stay on the video call"}
+{"id": "p09", "label": "digital_arrest", "text": "video call band mat karna camera on rakho kisi ko mat batana ghar walon ko bhi nahi investigation chal rahi hai"}
+{"id": "p10", "label": "digital_arrest", "text": "to prove your innocence transfer your savings to the rbi safe account it will be returned after verification"}
+{"id": "p11", "label": "digital_arrest", "text": "a non bailable warrant is issued in your name pay the settlement amount now or the police will come to your house"}
+{"id": "p12", "label": "digital_arrest", "text": "trai se call hai aapke number se illegal messages gaye hain do ghante mein number band ho jayega police se baat karwata hoon"}
+{"id": "p13", "label": "banking", "text": "bhaiya galti se aapke google pay par paise chale gaye please wapas bhej do maa hospital mein hai"}
+{"id": "p14", "label": "banking", "text": "paisa receive karne ke liye bas upi pin daal dijiye maine request bheji hai accept kar lo"}
+{"id": "p15", "label": "banking", "text": "your loan of five lakh is approved just pay the processing fee to this account and the amount will be disbursed"}
+{"id": "p16", "label": "banking", "text": "refund ke liye phonepe kholiye request money mein amount daaliye aur pin daaliye refund aa jayega"}
+{"id": "p17", "label": "banking", "text": "scan this qr code to receive the payment for your olx item then enter your pin"}
+{"id": "p18", "label": "other_scam", "text": "kaun banega crorepati se bol raha hoon aapka pachees lakh ka lottery laga hai pehle tax ke paise bhejne honge"}
+{"id": "p19", "label": "other_scam", "text": "you are selected for a work from home job you only need to pay the registration fee today"}
+{"id": "p20", "label": "other_scam", "text": "papa main hoon mera phone kho gaya ye dost ka number hai emergency hai abhi paise bhejo"}
+{"id": "p21", "label": "other_scam", "text": "aapke bete ka accident ho gaya hai hospital mein hai jaldi is number par paise bhej dijiye"}
+{"id": "p22", "label": "other_scam", "text": "bijli vibhag se bol raha hoon aaj raat aapka connection kat jayega abhi bill bharo is number par"}
+{"id": "p23", "label": "other_scam", "text": "guaranteed thirty percent monthly return invest ten thousand today and get thirteen thousand next month"}
+{"id": "p24", "label": "other_scam", "text": "hamare paas tumhari photos hain paise nahi diye toh internet par daal denge"}
+{"id": "g01", "label": "safe", "text": "hello sir main hdfc bank se bol rahi hoon aapki emi paanch tareekh ko due hai hum kabhi otp ya pin nahi maangte dhanyavaad"}
+{"id": "g02", "label": "safe", "text": "this is the sbi fraud team did you just make a transaction of 2500 if not block the card in the app never share your otp or pin with anyone"}
+{"id": "g03", "label": "safe", "text": "your new debit card has been dispatched and will reach your registered address in five working days we will never ask for your pin"}
+{"id": "g04", "label": "safe", "text": "main sector police station se bol raha hoon aapki mobile chori ki complaint ka fir number aa gaya hai kal station aakar copy le lijiye koi fees nahi hai"}
+{"id": "g05", "label": "safe", "text": "this is constable sharma for your passport police verification i will visit your address tomorrow please keep your documents ready no payment is required"}
+{"id": "g06", "label": "safe", "text": "cyber cell se bol raha hoon aapki complaint par fraud wala account freeze ho gaya hai court ke order ke baad paisa wapas aayega aapko kuch pay nahi karna"}
+{"id": "g07", "label": "safe", "text": "madam aapka amazon parcel delivery ke liye nikla hai main delivery boy bol raha hoon aap ghar par hain kya"}
+{"id": "g08", "label": "safe", "text": "hello sir i have arrived at your pickup location white swift dzire please come down"}
+{"id": "g09", "label": "safe", "text": "this is city hospital confirming your appointment with the doctor tomorrow at eleven please come fifteen minutes early"}
+{"id": "g10", "label": "safe", "text": "hi this is priya from hr we reviewed your resume and want to schedule a technical interview on thursday"}
+{"id": "g11", "label": "safe", "text": "hello bhai kal college aa raha hai kya assignment complete ho gaya toh mujhe bhej dena"}
+{"id": "g12", "label": "safe", "text": "electricity office se bol raha hoon kal subah maintenance ke liye das se do baje tak light nahi rahegi bas inform karna tha"}
+{"id": "g13", "label": "safe", "text": "your income tax refund has been processed and will be credited to your registered bank account do not share your details with anyone"}
+{"id": "g14", "label": "safe", "text": "please verify your voter registration on the official election commission website this is an awareness call"}

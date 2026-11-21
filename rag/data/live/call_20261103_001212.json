@@ -1,0 +1,54 @@
+{
+  "transcript": "hello im talking about asi chandigarh tarek bota aapko digital rest kar diya actually aapka account bank se bol raha hoon aapka account bank se bol raha hoon toh uus basis pe aapko digital rish kharai hai uus ki bhoat overdue hooggi hai nye hello sir main bank se bol raha hoon venga rai",
+  "peak": 0.7332073934491768,
+  "history": [
+    {
+      "score": 0.058,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.082,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.556,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.652,
+      "level": "WARNING",
+      "type": "digital_arrest"
+    },
+    {
+      "score": 0.733,
+      "level": "WARNING",
+      "type": "digital_arrest"
+    },
+    {
+      "score": 0.728,
+      "level": "WARNING",
+      "type": "digital_arrest"
+    },
+    {
+      "score": 0.723,
+      "level": "WARNING",
+      "type": "digital_arrest"
+    }
+  ],
+  "llm": {
+    "score": 0.92,
+    "type": "digital_arrest",
+    "red_flags": [
+      "digital arrest",
+      "aapko digital rest kar diya",
+      "account bank se bol raha hoon",
+      "overdue hooggi hai"
+    ],
+    "reason": "The caller claims to be from the bank and says a 'digital arrest' has been issued against you over an overdue account — real banks and police never do this over a phone call.",
+    "advice": "Hang up now and do not share any details; verify only by calling your bank's official number or visiting the branch.",
+    "seconds": 1.96
+  }
+}

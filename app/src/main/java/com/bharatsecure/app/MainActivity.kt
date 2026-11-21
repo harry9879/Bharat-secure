@@ -62,6 +62,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -127,6 +128,8 @@ private fun AppShell(resumeTick: Int) {
     var screen by rememberSaveable { mutableStateOf(Screen.HOME) }
     val protection by ProtectionState.state.collectAsStateWithLifecycle()
     var recordings by remember { mutableStateOf(Recordings.list(context)) }
+    // Bumped when the offline switch flips, so the model card and the home tile follow it.
+    var speechTick by remember { mutableIntStateOf(0) }
     // Reload the list whenever a recording finishes or the app comes back.
     LaunchedEffect(protection.running, resumeTick) { recordings = Recordings.list(context) }
 
@@ -201,7 +204,7 @@ private fun AppShell(resumeTick: Int) {
                 when (screen) {
                     Screen.HOME -> {
                         item { ProtectionCard(protection) }
-                        item { StatusTiles(resumeTick, onOpen = ::go) }
+                        item { StatusTiles(resumeTick + speechTick, onOpen = ::go) }
                         item { SmsShieldCard(resumeTick) }
                         item { HowItWorksCard() }
                     }
@@ -215,8 +218,8 @@ private fun AppShell(resumeTick: Int) {
                     }
                     Screen.RAG -> item { RagServerCard() }
                     Screen.SPEECH -> {
-                        item { SpeechEngineCard() }
-                        item { SpeechModelCard() }
+                        item { SpeechEngineCard(onOfflineToggled = { speechTick++ }) }
+                        item { SpeechModelCard(speechTick) }
                     }
                     Screen.SETUP -> item { PermissionsCard(resumeTick) }
                 }
@@ -234,11 +237,21 @@ private fun StatusTiles(resumeTick: Int, onOpen: (Screen) -> Unit) {
     val (done, total) = setupProgress(context)
     val engine = SpeechModels.engine(context)
     val online = engine == SpeechEngine.ONLINE && SpeechModels.apiKey(context).isNotBlank()
+    val offlineOn = SpeechModels.offlineEnabled(context)
     val ragUrl = RagSettings.url(context)
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         StatusTile("Setup", "$done/$total", if (done == total) Brand.Safe else Brand.Warning,
             Modifier.weight(1f)) { onOpen(Screen.SETUP) }
-        StatusTile("Speech", if (online) "Online" else "Offline", Brand.Blue, Modifier.weight(1f)) { onOpen(Screen.SPEECH) }
+        StatusTile(
+            "Speech",
+            when {
+                online -> "Online"
+                offlineOn -> "Offline"
+                else -> "Off"
+            },
+            if (!online && !offlineOn) Color.Gray else Brand.Blue,
+            Modifier.weight(1f),
+        ) { onOpen(Screen.SPEECH) }
         StatusTile("Laptop AI", if (ragUrl.isBlank()) "Off" else "On", if (ragUrl.isBlank()) Color.Gray else Brand.Safe,
             Modifier.weight(1f)) { onOpen(Screen.RAG) }
     }
@@ -551,11 +564,12 @@ private fun RagServerCard() {
 }
 
 @Composable
-private fun SpeechEngineCard() {
+private fun SpeechEngineCard(onOfflineToggled: () -> Unit) {
     val context = LocalContext.current
     var engine by remember { mutableStateOf(SpeechModels.engine(context)) }
     var key by remember { mutableStateOf(SpeechModels.apiKey(context)) }
     var saved by remember { mutableStateOf(key.isNotBlank()) }
+    var offlineOn by remember { mutableStateOf(SpeechModels.offlineEnabled(context)) }
 
     Card {
         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -564,6 +578,7 @@ private fun SpeechEngineCard() {
                 SpeechEngine.entries.forEach { e ->
                     FilterChip(
                         selected = e == engine,
+                        enabled = offlineOn || e != SpeechEngine.OFFLINE,
                         onClick = {
                             engine = e
                             SpeechModels.selectEngine(context, e)
@@ -572,11 +587,44 @@ private fun SpeechEngineCard() {
                     )
                 }
             }
+
+            HorizontalDivider()
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f)) {
+                    Text("Offline transcript", fontWeight = FontWeight.SemiBold)
+                    Text(
+                        if (offlineOn) "On-device Vosk may be used when the online engine is unavailable."
+                        else "Off: calls are recorded, but the phone writes no transcript of its own.",
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
+                Switch(
+                    checked = offlineOn,
+                    onCheckedChange = { on ->
+                        offlineOn = on
+                        SpeechModels.setOfflineEnabled(context, on)
+                        engine = SpeechModels.engine(context)
+                        onOfflineToggled()
+                    },
+                )
+            }
+            if (!offlineOn) {
+                Text(
+                    if (saved) "Only Whisper text will be shown. If the key or internet fails mid-call, " +
+                        "the call still records with no transcript."
+                    else "⚠️ No Groq key saved, so no transcript will be produced at all - the call is " +
+                        "recorded and the laptop AI still runs.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = if (saved) Color.Gray else Color(0xFFC62828),
+                )
+            }
+            HorizontalDivider()
             if (engine == SpeechEngine.ONLINE) {
                 Text(
                     "Whisper large-v3 (via Groq) understands Hindi, English and Hinglish and returns English text. " +
                         "Call audio is sent to Groq in 6-second pieces while Protection Mode is on. " +
-                        "Without a key or internet, the app uses the offline models.",
+                        if (offlineOn) "Without a key or internet, the app uses the offline models."
+                        else "Without a key or internet, the call is recorded with no transcript.",
                     style = MaterialTheme.typography.bodySmall,
                 )
                 OutlinedTextField(
@@ -604,8 +652,9 @@ private fun SpeechEngineCard() {
 }
 
 @Composable
-private fun SpeechModelCard() {
+private fun SpeechModelCard(speechTick: Int) {
     val context = LocalContext.current
+    key(speechTick) {}
     val scope = rememberCoroutineScope()
     var language by remember { mutableStateOf(SpeechModels.selectedLanguage(context)) }
     // Bumped after a download so the installed checks re-run.
@@ -617,6 +666,13 @@ private fun SpeechModelCard() {
     Card {
         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text("Speech-to-text (offline)", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            if (!SpeechModels.offlineEnabled(context)) {
+                Text(
+                    "Offline transcript is switched off above, so these models stay unused.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color(0xFFC62828),
+                )
+            }
             Text("Language spoken on the call:", style = MaterialTheme.typography.bodySmall)
             Row(
                 Modifier.horizontalScroll(rememberScrollState()),

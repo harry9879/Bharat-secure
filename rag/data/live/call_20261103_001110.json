@@ -1,0 +1,38 @@
+{
+  "transcript": "hello we are calling from bank bank manager harlan nipsing go raha hoon aapka digital arrest karengo aapka yaan se tux mili hai tapa bak mil te borram haapka dijiye o reft karni haapya ariam bak mil te borram haapka dijiye o reft karni haapya ariam",
+  "peak": 0.8814193214756915,
+  "history": [
+    {
+      "score": 0.019,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.588,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.798,
+      "level": "SCAM",
+      "type": "digital_arrest"
+    },
+    {
+      "score": 0.881,
+      "level": "SCAM",
+      "type": "digital_arrest"
+    }
+  ],
+  "llm": {
+    "score": 0.95,
+    "type": "digital_arrest",
+    "red_flags": [
+      "calling from bank",
+      "bank manager",
+      "aapka digital arrest karengo"
+    ],
+    "reason": "The caller claims to be a bank manager and threatens you with 'digital arrest' — real banks and police never arrest anyone over a phone call.",
+    "advice": "Hang up immediately and do not share any details or money; report it to cybercrime.gov.in or 1930.",
+    "seconds": 1.65
+  }
+}

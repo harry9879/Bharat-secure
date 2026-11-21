@@ -1,0 +1,97 @@
+"""Writes knowledge/sms_patterns.jsonl (hand-written SMS cards). Edit CARDS and re-run, or edit the jsonl directly."""
+import json
+from pathlib import Path
+
+CARDS = [
+    # phishing_otp
+    ("phishing_otp", "Dear customer your SBI YONO account will be blocked today. Update PAN now: http://sbi-kyc-update.xyz"),
+    ("phishing_otp", "HDFC Bank: your netbanking is suspended due to incomplete KYC. Click https://hdfc-kyc-verify.co/login to reactivate"),
+    ("phishing_otp", "Aapka bank account band ho jayega. KYC update karne ke liye abhi link par click karein: bit.ly/kyc-now"),
+    ("phishing_otp", "Your PAN card is not linked with Aadhaar, account will be frozen in 24 hrs. Update immediately at http://pan-link.top"),
+    ("phishing_otp", "Dear user, your debit card is blocked. To unblock share the OTP received on your number or call 98xxxxxx12"),
+    ("phishing_otp", "ICICI: Rs 49,999 debited via UPI. If not you, click http://icici-secure.cc/dispute to cancel"),
+    ("phishing_otp", "Aapke paytm KYC expire ho gaya hai. 2 ghante me update nahi kiya to wallet block. Link: paytm-kyc.click"),
+    ("phishing_otp", "Your Airtel SIM will be deactivated tonight. Complete e-KYC here: http://airtel-ekyc.online or call 9XXXXXXXXX"),
+    ("phishing_otp", "Income Tax Department: refund of Rs 15,490 approved. Verify your account details at http://incometax-refund.info"),
+    ("phishing_otp", "Download the SBI Rewards app apk to redeem 9,980 points before they expire: http://sbi-rewards.top/app.apk"),
+    ("phishing_otp", "Aapka Aadhaar suspend ho gaya hai. Re-verify karne ke liye UIDAI link: http://uidai-verify.xyz"),
+    ("phishing_otp", "Axis Bank alert: your credit card reward points expire today. Redeem now http://axis-points.site"),
+    # digital_arrest
+    ("digital_arrest", "Notice from Cyber Crime Cell: a case is registered against your Aadhaar for illegal activity. Call 9XXXXXXXXX immediately to avoid arrest warrant"),
+    ("digital_arrest", "CBI notice: parcel in your name contains illegal items. Contact officer on WhatsApp immediately or FIR will be filed"),
+    ("digital_arrest", "TRAI: your mobile number will be disconnected in 2 hours due to illegal activity. Press 1 to speak to customer officer"),
+    ("digital_arrest", "Customs department: your courier is seized with drugs. Pay clearance fee or arrest warrant will be issued"),
+    ("digital_arrest", "Aapke naam par money laundering ka case darj hai. Digital arrest se bachne ke liye turant is number par sampark karein"),
+    ("digital_arrest", "Supreme Court summons issued against you. Pay Rs 25000 settlement today to cancel the notice, link: court-notice.in.net"),
+    # banking
+    ("banking", "Rs 5000 sent to you by mistake on PhonePe, please return it to this number urgently"),
+    ("banking", "Congratulations your loan of Rs 5,00,000 is pre-approved. Pay processing fee Rs 2,500 to get it disbursed today"),
+    ("banking", "Instant loan approved without documents. Install the app and pay registration charge to receive money in 10 minutes"),
+    ("banking", "Scan this QR code to receive your cashback of Rs 2000 and enter your UPI PIN to accept"),
+    ("banking", "Your refund request of Rs 1,200 is pending. Accept the collect request on your UPI app to receive the money"),
+    ("banking", "Aapke account se Rs 9,800 debit hue hain. Refund ke liye apna card number aur CVV is link par bharein"),
+    # other_scam
+    ("other_scam", "Dear consumer your electricity power will be disconnected tonight at 9.30 pm because previous month bill was not updated. Call 9XXXXXXXXX"),
+    ("other_scam", "Bijli ka bill update nahi hua, aaj raat 9:30 baje connection kat jayega. Turant sampark karein officer se"),
+    ("other_scam", "Congratulations! You have won Rs 25,00,000 in KBC lucky draw. Contact on WhatsApp to claim your prize"),
+    ("other_scam", "Part time job: earn Rs 5000 daily by liking YouTube videos. Registration fee Rs 500. WhatsApp now"),
+    ("other_scam", "Hello, you are selected for work from home job, earn 5000 daily. Pay registration fee to start. Message on telegram"),
+    ("other_scam", "India Post: your parcel is on hold due to incomplete address. Update within 12 hours: https://indiapost-track.top/in"),
+    ("other_scam", "Your DHL package could not be delivered. Pay Rs 25 redelivery fee at http://dhl-redeliver.xyz"),
+    ("other_scam", "Hi mom my phone is broken this is my new number, please send Rs 15000 urgently I will explain later"),
+    ("other_scam", "Task based job: complete simple tasks, earn Rs 800 per task, join our telegram group t.me/earnfast and deposit to unlock withdrawals"),
+    ("other_scam", "Guaranteed 30% monthly returns on crypto investment. Join our VIP trading group on WhatsApp, limited slots"),
+    ("other_scam", "Your gas connection will be cut today unless you update your consumer details. Call helpline now"),
+    ("other_scam", "Lucky winner! Your mobile number won iPhone 15 in Jio lucky draw. Pay Rs 999 delivery charge to claim"),
+    ("other_scam", "Sir aapka insurance bonus Rs 1,20,000 ready hai, claim karne ke liye tax fee deposit karein"),
+    ("other_scam", "Passport verification pending, pay Rs 500 fee on this link to avoid cancellation: http://passport-seva.top"),
+    # safe
+    ("safe", "123456 is your OTP for login. Do not share this OTP with anyone. Valid for 10 minutes. -HDFC Bank"),
+    ("safe", "Dear customer, Rs 1,250.00 debited from A/c XX1234 on 12-10-26 via UPI. Avl bal Rs 8,420. If not done by you, call 1800-xxx-xxxx. -SBI"),
+    ("safe", "Your OTP for transaction of Rs 799 at Amazon is 483920. Never share it with anyone, including bank staff."),
+    ("safe", "Your Swiggy order is out for delivery. Delivery partner Ravi is arriving in 10 mins. Order ID 8821."),
+    ("safe", "Your Amazon package will be delivered today by 8 PM. Track: https://www.amazon.in/trackpackages"),
+    ("safe", "Dear customer your Jio recharge of Rs 299 is successful. Validity 28 days. Thank you."),
+    ("safe", "Reminder: your EMI of Rs 4,500 is due on 05-11-26. Please keep sufficient balance. -Bajaj Finserv"),
+    ("safe", "Your electricity bill of Rs 1,240 is generated. Due date 20 Nov. Pay on the official app or www.bescom.co.in"),
+    ("safe", "Bank never asks for your OTP, PIN or CVV. Beware of fraud calls and links. -ICICI Bank"),
+    ("safe", "Your appointment with Dr. Sharma is confirmed for tomorrow 5 PM at Apollo Clinic."),
+    ("safe", "Hi bhai, kal shaam 6 baje match hai, jaldi aa jana yaar"),
+    ("safe", "Mummy ne bola ki aaj ghar jaldi aana, dinner pe sab aa rahe hain"),
+    ("safe", "Your IRCTC ticket PNR 4521896340 is confirmed. Train 12951, 14 Nov, seat S4/32. Happy journey."),
+    ("safe", "Your Airtel postpaid bill of Rs 599 is generated. Pay by 15th via the Airtel Thanks app."),
+    ("safe", "Your Zomato order has been delivered. Rate your experience in the app."),
+    ("safe", "Interview scheduled for Monday 10 AM at our Pune office. Please carry your resume. -HR Team, Infosys"),
+    ("safe", "Your PNB account XX4521 credited with Rs 25,000 salary on 01-11-26. Avl bal Rs 31,240."),
+    ("safe", "Your Aadhaar update request has been received. Track status on uidai.gov.in. URN 1234/56789/00123"),
+    ("safe", "Income tax refund of Rs 8,240 has been credited to your bank account XX5678. -Income Tax Department"),
+    ("safe", "Your LPG cylinder booking is confirmed. Delivery expected within 2 days. Do not pay anyone extra."),
+    ("safe", "Hello sir, your parcel from Flipkart is delivered. Thank you for shopping."),
+    ("safe", "Use code SAVE20 for 20% off on your next Myntra order. Valid till Sunday. T&C apply."),
+    ("safe", "Your car service is due. Book a slot at your nearest Maruti Suzuki workshop. Call 1800-102-1800."),
+    ("safe", "Happy birthday dost! Party kab de raha hai? Lots of love"),
+    ("safe", "Ok bhai, main 10 min me pahunch raha hu. Gate pe wait kar"),
+    ("safe", "Reached office safely. Will call you in the evening."),
+    ("safe", "Dad: please transfer the school fees when you reach home, I will give you the cash tomorrow"),
+    ("safe", "Rs 450 paid to Big Bazaar via UPI. UPI Ref 4123XXXX8901. Not you? Call 1800-xxx-xxxx. -Axis Bank"),
+    ("safe", "Dear customer, your Jio Fiber installation is scheduled for tomorrow 11 AM. Our engineer will call you."),
+    ("safe", "Your Rs 2,000 credit card payment was received. Thank you. -HDFC Bank Credit Cards"),
+    ("safe", "Your monthly statement for Oct is ready. View it by logging in at www.sbicard.com. Never share your OTP."),
+    ("safe", "Thanks for visiting Dominos. Your order 5521 of Rs 549 is confirmed and will arrive in 30 mins."),
+    ("safe", "Your parcel has been shipped via Delhivery, AWB 1234567890. Track on delhivery.com."),
+    ("safe", "Your mobile number has been successfully ported to Vi. Welcome! Your new plan is active."),
+    ("safe", "Your exam admit card for Nov 20 is available on the official university portal. Check the notice board for the venue."),
+    ("safe", "The PM-KISAN instalment has been credited to your bank account. Check status only at pmkisan.gov.in."),
+    ("safe", "Your appointment at Passport Seva Kendra is confirmed for 14 Nov 10:30. Carry original documents. No payment is needed at the center."),
+    ("safe", "Meeting moved to 3 PM, conference room B. Please join on time."),
+    ("safe", "Don't forget to pick up milk and bread on your way back home"),
+    ("safe", "Cashback of Rs 50 credited to your Paytm wallet for your recharge. Enjoy!"),
+    ("safe", "Your policy renewal is due on 30 Nov. Pay premium on the official LIC app or at your nearest branch."),
+]
+
+if __name__ == "__main__":
+    out = Path(__file__).resolve().parent.parent / "knowledge" / "sms_patterns.jsonl"
+    with open(out, "w", encoding="utf-8") as f:
+        for i, (label, text) in enumerate(CARDS, 1):
+            f.write(json.dumps(dict(id=f"s{i:02d}", label=label, text=text), ensure_ascii=False) + "\n")
+    print(f"wrote {len(CARDS)} cards to {out}")

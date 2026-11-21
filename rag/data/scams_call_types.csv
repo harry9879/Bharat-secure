@@ -1,0 +1,32 @@
+number,type,reason
+1,phishing_otp,bank asks for the OTP to "unblock" the card
+2,phishing_otp,Aadhaar verification through an SMS link
+3,phishing_otp,"fake bank asks to confirm account and registered mobile number"
+4,phishing_otp,parcel "incomplete address" link
+5,other_scam,work-from-home job with registration fee
+6,phishing_otp,KYC expired; asks for the OTP
+7,digital_arrest,"fake cyber-crime inspector, Aadhaar misuse, case, arrest threat"
+8,digital_arrest,"money laundering, stay on video, don't disconnect"
+9,other_scam,lucky draw prize with processing fee
+10,other_scam,fake accident of a relative; send money
+11,other_scam,extortion with personal photos
+12,banking,"enter UPI PIN to ""receive"" money"
+13,other_scam,electricity disconnection tonight unless paid
+14,other_scam,guaranteed 30% monthly investment return
+15,banking,fake pre-approved loan with processing fee
+16,other_scam,insurance bonus needs renewal charges
+17,digital_arrest,"customs found illegal items; legal action threat"
+18,other_scam,like-videos task job then invest
+19,digital_arrest,"serious complaint registered; cooperate or face problems"
+20,phishing_otp,account suspended in 10 minutes unless verified
+21,other_scam,"cousin on a new number, emergency money"
+22,other_scam,"pressure to pay now, savings at risk"
+23,phishing_otp,credit-limit increase; asks card details and security code
+24,phishing_otp,account frozen; immediate verification
+25,banking,cheque clearance; confirm account information
+26,phishing_otp,income tax discrepancy; verify PAN details
+27,digital_arrest,"Aadhaar linked to suspicious bank accounts; services restricted"
+28,digital_arrest,legal notice and hearing; legal proceedings threat
+29,digital_arrest,"ongoing investigation; provide financial information"
+30,other_scam,passport on hold; pay verification charges
+31,phishing_otp,government subsidy; update bank details through a link

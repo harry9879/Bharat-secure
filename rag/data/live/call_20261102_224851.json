@@ -1,0 +1,44 @@
+{
+  "transcript": "hello so what they are trying to say is tchak hai haan ji kya hua toh haan si biay si boh raha hai hai hai toh actually aapke jokar be aap kata na kita aapka chela hake terlalu aapka naan tuh palik suba si jel rih di",
+  "peak": 0.196572670987827,
+  "history": [
+    {
+      "score": 0.008,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.011,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.012,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.013,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.132,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.197,
+      "level": "SAFE",
+      "type": null
+    }
+  ],
+  "llm": {
+    "score": 0.15,
+    "type": "safe",
+    "red_flags": [],
+    "reason": "The transcript is garbled and no clear request for OTP, money, or a link/app action appears yet. Nothing suspicious has actually been said so far.",
+    "advice": "Keep listening; if they ask for an OTP, PIN, money or to install an app, hang up and report it.",
+    "seconds": 1.45
+  }
+}

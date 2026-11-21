@@ -1,0 +1,37 @@
+{
+  "transcript": "aapka account ab ghar ke andar aapke rijistar vekar ke andar hamen draks praapat huee hai hema kya hua aapku",
+  "peak": 0.7704462947784003,
+  "history": [
+    {
+      "score": 0.314,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.589,
+      "level": "SAFE",
+      "type": null
+    },
+    {
+      "score": 0.719,
+      "level": "WARNING",
+      "type": "digital_arrest"
+    },
+    {
+      "score": 0.77,
+      "level": "SCAM",
+      "type": "digital_arrest"
+    }
+  ],
+  "llm": {
+    "score": 0.7,
+    "type": "digital_arrest",
+    "red_flags": [
+      "account ke andar hamen documents prapt hue hain",
+      "account ab ghar ke andar aapke register/record ke andar"
+    ],
+    "reason": "The caller claims to have found documents linked to your account and is building a case-like story, which is a common opening for fake police or 'digital arrest' scams. No genuine official starts this way on a phone call.",
+    "advice": "Do not share any details or money; hang up and verify only through your bank's official number or by visiting the police station yourself.",
+    "seconds": 1.9
+  }
+}
