@@ -110,7 +110,7 @@ class RagLink(
                 onStatus("Connected")
             } catch (e: Exception) {
                 Log.w(TAG, "send failed", e)
-                onStatus("Laptop offline: ${e.message ?: e.javaClass.simpleName}")
+                onStatus("Laptop offline - failed to connect")
             }
         }
     }
@@ -132,7 +132,7 @@ class RagLink(
             }
         } catch (e: Exception) {
             Log.w(TAG, "start failed", e)
-            onStatus("Laptop offline: ${e.message ?: e.javaClass.simpleName}")
+            onStatus("Laptop offline - failed to connect")
             null
         }
     }

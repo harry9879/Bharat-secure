@@ -15,6 +15,8 @@ import android.os.IBinder
 import android.util.Log
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
+import com.bharatsecure.app.reports.ScamReport
+import com.bharatsecure.app.reports.ScamReports
 import com.bharatsecure.app.scam.ScamLevel
 import com.bharatsecure.app.scam.ScamType
 import com.bharatsecure.app.scam.ScamVerdict
@@ -30,6 +32,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.UUID
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
@@ -288,7 +291,47 @@ class ProtectionService : Service() {
             lines.forEach { appendLine(it) }
         })
         ProtectionState.update { it.copy(transcript = lines.toList(), partial = "") }
+        saveReport(source, caller, lines, base, lastRag)
         finish(if (heardAnything) "Saved" else "Saved, but the audio was silent (mic muted by Android)")
+    }
+
+    /**
+     * A call that ended on a WARNING or SCAM verdict is filed under Scam
+     * reports, so the number, the reason and the transcript survive the call
+     * and the user can forward them to the authorities. Nothing is sent
+     * anywhere from here, and no number is ever blocked: a reported number
+     * still rings normally.
+     */
+    private fun saveReport(
+        source: CallSource,
+        caller: String?,
+        lines: List<String>,
+        recordingName: String,
+        rag: RagUpdate?,
+    ) {
+        val state = ProtectionState.state.value
+        val verdict = state.verdict
+        if (verdict.level == ScamLevel.SAFE) return
+        try {
+            ScamReports.add(
+                this,
+                ScamReport(
+                    id = UUID.randomUUID().toString(),
+                    createdAtMs = state.startedAtMs.takeIf { it > 0L } ?: System.currentTimeMillis(),
+                    number = caller?.takeIf { it.isNotBlank() } ?: "Unknown number",
+                    sourceLabel = source.label,
+                    level = if (verdict.level == ScamLevel.SURE) "SCAM" else "WARNING",
+                    typeLabel = verdict.type?.label,
+                    score = maxOf(verdict.score, rag?.score ?: 0.0, state.scamScore),
+                    reason = rag?.reason ?: "Flagged during the call by the scam detector.",
+                    advice = rag?.advice ?: verdict.type?.advice,
+                    transcript = lines.takeLast(ScamReport.MAX_TRANSCRIPT_LINES),
+                    recordingName = recordingName,
+                ),
+            )
+        } catch (e: Exception) {
+            Log.e(TAG, "could not save scam report", e)
+        }
     }
 
     @SuppressLint("MissingPermission") // checked in start()

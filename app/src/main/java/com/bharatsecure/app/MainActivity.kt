@@ -38,6 +38,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DrawerValue
@@ -85,6 +86,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.bharatsecure.app.reports.ScamReports
 import com.bharatsecure.app.scam.ScamLevel
 import com.bharatsecure.app.scam.ScamVerdict
 import kotlinx.coroutines.Dispatchers
@@ -112,6 +114,7 @@ class MainActivity : ComponentActivity() {
 
 private enum class Screen(val title: String, val icon: ImageVector) {
     HOME("Call Shield", Icons.Filled.Home),
+    REPORTS("Scam reports", Icons.Filled.Warning),
     RECORDINGS("Recordings", Icons.AutoMirrored.Filled.List),
     RAG("Laptop AI (RAG)", Icons.Filled.Share),
     SPEECH("Speech engine", Icons.Filled.Settings),
@@ -128,10 +131,15 @@ private fun AppShell(resumeTick: Int) {
     var screen by rememberSaveable { mutableStateOf(Screen.HOME) }
     val protection by ProtectionState.state.collectAsStateWithLifecycle()
     var recordings by remember { mutableStateOf(Recordings.list(context)) }
+    var reports by remember { mutableStateOf(ScamReports.list(context)) }
     // Bumped when the offline switch flips, so the model card and the home tile follow it.
     var speechTick by remember { mutableIntStateOf(0) }
-    // Reload the list whenever a recording finishes or the app comes back.
-    LaunchedEffect(protection.running, resumeTick) { recordings = Recordings.list(context) }
+    // Reload the lists whenever a recording finishes or the app comes back: a call
+    // that ended as a scam has just written its report.
+    LaunchedEffect(protection.running, resumeTick) {
+        recordings = Recordings.list(context)
+        reports = ScamReports.list(context)
+    }
 
     fun go(to: Screen) {
         screen = to
@@ -155,8 +163,12 @@ private fun AppShell(resumeTick: Int) {
                 Screen.entries.forEach { s ->
                     NavigationDrawerItem(
                         label = {
-                            Text(if (s == Screen.RECORDINGS && recordings.isNotEmpty()) "${s.title} (${recordings.size})"
-                            else s.title)
+                            val count = when (s) {
+                                Screen.RECORDINGS -> recordings.size
+                                Screen.REPORTS -> reports.size
+                                else -> 0
+                            }
+                            Text(if (count > 0) "${s.title} ($count)" else s.title)
                         },
                         icon = { Icon(s.icon, contentDescription = null) },
                         selected = s == screen,
@@ -208,12 +220,32 @@ private fun AppShell(resumeTick: Int) {
                         item { SmsShieldCard(resumeTick) }
                         item { HowItWorksCard() }
                     }
+                    Screen.REPORTS -> {
+                        item { ReportsSummaryCard(reports) }
+                        item { NewReportCard(onSaved = { reports = ScamReports.list(context) }) }
+                        if (reports.isEmpty()) {
+                            item {
+                                EmptyState(
+                                    "No scam reports yet",
+                                    "A call that ends as a scam is recorded here with the caller's number, " +
+                                        "ready to forward to the authorities.",
+                                )
+                            }
+                        }
+                        items(reports, key = { it.id }) { report ->
+                            ReportCard(report, onChanged = { reports = ScamReports.list(context) })
+                        }
+                    }
                     Screen.RECORDINGS -> {
                         if (recordings.isEmpty()) {
                             item { EmptyState("No recordings yet", "Calls you protect are saved here with their transcript and scam verdict.") }
                         }
                         items(recordings, key = { it.name }) { rec ->
-                            RecordingRow(rec, onDeleted = { recordings = Recordings.list(context) })
+                            RecordingRow(
+                                rec,
+                                onDeleted = { recordings = Recordings.list(context) },
+                                onReported = { reports = ScamReports.list(context) },
+                            )
                         }
                     }
                     Screen.RAG -> item { RagServerCard() }
@@ -304,6 +336,8 @@ private fun HowItWorksCard() {
                 "2. Answer and put the call on speaker.",
                 "3. BharatSecure listens, transcribes and checks for scams every few seconds.",
                 "4. If it's a scam you get a loud alert, the reason, and a button to call 1930.",
+                "5. When the call ends it is saved under Scam reports, with the number and a button " +
+                    "to forward the whole report to the authorities.",
             ).forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
         }
     }
@@ -336,6 +370,7 @@ private fun ProtectionCard(state: ProtectionUiState) {
             )
             if (running) {
                 Text("${state.source?.label ?: ""} · ${state.caller ?: "unknown caller"}")
+                ReportedNumberWarning(state.caller)
                 VerdictBanner(state.verdict)
                 RagPanel(state)
                 Text(state.status, style = MaterialTheme.typography.bodySmall)
@@ -551,7 +586,7 @@ private fun RagServerCard() {
                                 "✅ Connected · ${h.optInt("passages")} examples · " +
                                     if (keys) "DeepSeek on" else "⚠️ laptop has no DeepSeek key"
                             } catch (e: Exception) {
-                                "❌ Can't reach $base (${e.message ?: e.javaClass.simpleName}). Same hotspot? Server running?"
+                                "❌ Failed to connect. Same hotspot? Server running?"
                             }
                         }
                         testing = false
@@ -745,7 +780,7 @@ private fun SpeechModelCard(speechTick: Int) {
 }
 
 @Composable
-private fun RecordingRow(rec: Recording, onDeleted: () -> Unit) {
+private fun RecordingRow(rec: Recording, onDeleted: () -> Unit, onReported: () -> Unit) {
     var player by remember { mutableStateOf<MediaPlayer?>(null) }
     var showText by remember { mutableStateOf(false) }
     DisposableEffect(rec.name) { onDispose { player?.release() } }
@@ -779,6 +814,8 @@ private fun RecordingRow(rec: Recording, onDeleted: () -> Unit) {
                     onDeleted()
                 }) { Text("Delete") }
             }
+            // For a call the detector did not flag: files it under Scam reports.
+            Row(verticalAlignment = Alignment.CenterVertically) { ReportThisCallButton(rec, onReported) }
             if (showText) {
                 Text(
                     if (rec.transcript.exists()) rec.transcript.readText() else "(No transcript saved)",

@@ -12,6 +12,7 @@ import android.net.Uri
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import com.bharatsecure.app.reports.ScamReports
 import com.bharatsecure.app.scam.ScamLevel
 import com.bharatsecure.app.scam.ScamType
 import com.bharatsecure.app.scam.ScamVerdict
@@ -48,7 +49,11 @@ object Notifier {
     /** Loud warning while the call is still going on. */
     /** [reason]: an explanation from the laptop RAG server, shown instead of the generic advice. */
     fun showScamAlert(context: Context, verdict: ScamVerdict, reason: String? = null) {
-        if (!canNotify(context) || verdict.level == ScamLevel.SAFE) return
+        if (verdict.level == ScamLevel.SAFE) return
+        // The alarm beep comes first, and runs whether or not notifications are
+        // allowed: mid-call, the sound is the part the user actually notices.
+        ScamBeep.alarm()
+        if (!canNotify(context)) return
         val type = verdict.type ?: ScamType.OTHER
         val title = if (verdict.level == ScamLevel.SURE) "🛑 SCAM CALL: ${type.label}"
         else "⚠️ Possible scam: ${type.label}"
@@ -90,10 +95,21 @@ object Notifier {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
         )
 
+        // A number with past reports gets a warning line - nothing more. The call
+        // is never blocked, rejected or silenced; it rings exactly as usual.
+        val reported = ScamReports.timesReported(context, caller)
+        val body = if (reported > 0) {
+            "⚠️ This number was reported as a scam " + (if (reported == 1) "before" else "$reported times") +
+                " on this phone. Put the call on speaker and enable Protection Mode."
+        } else {
+            "Put the call on speaker and enable Protection Mode to record and check it."
+        }
+
         val notification = NotificationCompat.Builder(context, CHANNEL_CALL_ALERT)
             .setSmallIcon(R.drawable.ic_shield)
             .setContentTitle("${source.label} from $caller")
-            .setContentText("Put the call on speaker and enable Protection Mode to record and check it.")
+            .setContentText(body)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(body))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setCategory(NotificationCompat.CATEGORY_RECOMMENDATION)
             .setAutoCancel(true)
