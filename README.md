@@ -30,8 +30,6 @@ scamshield/sandbox/   Isolated Playwright browser that opens suspect links
 scamshield/shared/    rules.yaml + brands.yaml — the single source of scam keywords and brands
 scamshield/deploy/    docker-compose, Nginx snippet (prepared, not deployed)
 scamshield/tools/     rule export, Kotlin-vs-Python parity check, demo report
-JUDGE_PREP.md         Evaluation numbers and the hardest questions, with answers
-SECURITY_QA.md        Security and privacy posture
 ```
 
 ## Build the call app

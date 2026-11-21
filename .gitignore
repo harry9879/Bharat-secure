@@ -16,3 +16,11 @@ rag/install.log
 .env
 *.jks
 *.keystore
+
+# Internal prep material and the pitch deck — kept on disk, never published
+JUDGE_PREP.md
+SECURITY_QA.md
+*.pptx
+rag/docs/
+scamshield/demo.md
+scamshield/docs/

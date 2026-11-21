@@ -14,7 +14,6 @@ call audio ─► Whisper large-v3-turbo (Groq) ─► Roman Hinglish
             continuous score = blend of ① and ②, rises fast, falls slowly
 ```
 
-How it works and why: [docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md).
 
 ---
 

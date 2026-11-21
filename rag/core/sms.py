@@ -20,7 +20,7 @@ from .retrieval import knn_score
 
 SMS_INDEX_DIR = config.INDEX_DIR / "sms"
 CORPUS = config.REPO / "scamshield" / "backend" / "tests" / "corpus" / "sms_corpus.jsonl"
-RED_FLAGS = (config.KNOWLEDGE_DIR / "sms_red_flags.md").read_text(encoding="utf-8")
+RED_FLAGS = (config.KNOWLEDGE_DIR / "sms_red_flags.txt").read_text(encoding="utf-8")
 
 SMS_WARN_AT, SMS_SCAM_AT = 0.45, 0.75           # with the LLM
 SMS_WARN_AT_NO_LLM, SMS_SCAM_AT_NO_LLM = 0.60, 0.85   # retrieval alone is less reliable

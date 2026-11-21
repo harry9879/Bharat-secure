@@ -8,7 +8,7 @@ import requests
 
 from . import config
 
-RED_FLAGS = (config.KNOWLEDGE_DIR / "red_flags.md").read_text(encoding="utf-8")
+RED_FLAGS = (config.KNOWLEDGE_DIR / "red_flags.txt").read_text(encoding="utf-8")
 
 SYSTEM = f"""You protect people in India from phone scams. You read a live phone-call transcript
 (Roman Hinglish/English, from speech recognition, so expect some wrong words) and judge whether

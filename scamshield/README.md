@@ -4,8 +4,6 @@ Android default-SMS app that checks every incoming message for scams (sender, wo
 opens links only in a server sandbox, and — with the user's consent — automatically emails a
 report to cyber-crime authorities through the company mail server.
 
-The full design is in [`docs/SCAMSHIELD_SMS_CONTEXT.md`](docs/SCAMSHIELD_SMS_CONTEXT.md) (§17 = what's built).
-
 ```
 shared/        rules.yaml + brands.yaml — the ONLY place scam keywords, brands, headers, points live
 backend/       FastAPI API, scoring, deep URL analysis, auto-reports, threat feeds (Python 3.12)
